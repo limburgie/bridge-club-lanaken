@@ -1,0 +1,1 @@
+${api.query("contributie").findFirst().getRichText("informatie").html}

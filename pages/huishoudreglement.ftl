@@ -1,0 +1,1 @@
+${api.query("huishoudreglement").findFirst().getRichText("informatie").html}

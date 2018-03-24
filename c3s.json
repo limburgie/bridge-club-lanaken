@@ -1,0 +1,97 @@
+{
+	"name": "Bridge Club Lanaken",
+	"indexPageFriendlyUrl": "home",
+	"templateEngine": "FREEMARKER",
+
+	"contentRepositoryConnection": {
+		"type": "PRISMIC",
+		"repositoryId": "https://bridgeclublanaken.prismic.io/api"
+	},
+
+	"templates": [
+		{
+			"name": "template",
+			"contents": "templates/template.ftl"
+		},
+		{
+			"name": "subpage",
+			"extendsFrom": "template",
+			"inserts": {
+				"body": "templates/sub-template.ftl"
+			}
+		}
+	],
+
+	"errorPage": {
+		"name": "Oeps!",
+		"template": "subpage",
+		"inserts": {
+			"content": "pages/error.ftl"
+		}
+	},
+
+	"pages": [
+		{
+			"friendlyUrl": "home",
+			"name": "Home",
+			"template": "template",
+			"inserts": {
+				"body": "pages/home.ftl"
+			}
+		},
+		{
+			"friendlyUrl": "uitslagen",
+			"name": "Uitslagen",
+			"template": "subpage",
+			"inserts": {
+				"content": "pages/uitslagen.ftl"
+			}
+		},
+		{
+			"friendlyUrl": "lidgeld",
+			"name": "Lidgeld",
+			"template": "subpage",
+			"inserts": {
+				"content": "pages/lidgeld.ftl"
+			}
+		},
+		{
+			"friendlyUrl": "reglement",
+			"name": "Reglement",
+			"children": [
+				{
+					"friendlyUrl": "huishoudreglement",
+					"name": "Huishoudreglement",
+					"template": "subpage",
+					"inserts": {
+						"content": "pages/huishoudreglement.ftl"
+					}
+				},
+				{
+					"friendlyUrl": "wedstrijdreglement",
+					"name": "Wedstrijdreglement",
+					"template": "subpage",
+					"inserts": {
+						"content": "pages/wedstrijdreglement.ftl"
+					}
+				}
+			]
+		},
+		{
+			"friendlyUrl": "activiteiten",
+			"name": "Activiteiten",
+			"template": "subpage",
+			"inserts": {
+				"content": "pages/activiteiten.ftl"
+			}
+		},
+		{
+			"friendlyUrl": "contact",
+			"name": "Contact",
+			"template": "subpage",
+			"inserts": {
+				"content": "pages/contact.ftl"
+			}
+		}
+	]
+}
