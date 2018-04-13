@@ -1,14 +1,20 @@
+<#assign banner = api.query("banner").findFirst()>
+
 <div class="jumbotron">
-	<div class="jumbotron-bg" style="background-image: url('${api.query("banner").findFirst().getImage("achtergrond").url}')"></div>
-	<h1 class="my-2 my-sm-5">Uw brug naar bridgen en samenzijn</h1>
-	<p class="lead d-none d-sm-block">
-		Bridge Club Lanaken is een groeiende club, dicht bij u in de buurt. Een club waarin iedereen op zijn niveau leert.
-		Er is een divers publiek en een hartelijk ontvangst in het Cultureel Centrum Lanaken.
-	</p>
-	<p class="lead d-none d-sm-block">
-		En natuurlijk mag de goed verzorgde après-bridge niet ontbreken!
-	</p>
-	<p class="d-none d-sm-block"><a class="btn btn-lg btn-success" href="/lidgeld" role="button">Word ook lid!</a></p>
+	<div class="jumbotron-bg" style="background-image: url('${banner.getImage("achtergrond").url}')"></div>
+	<h1 class="my-2 my-sm-5">${banner.getText("titel")}</h1>
+	<#list banner.getGroup("beschrijving") as item>
+		<p class="lead d-none d-sm-block">
+			${item.getText("alinea")}
+		</p>
+	</#list>
+	<#if banner.getText("button_label")?has_content>
+		<p class="d-none d-sm-block">
+			<a class="btn btn-lg btn-success" href="${banner.getText("button_url")}" role="button">
+				${banner.getText("button_label")}
+			</a>
+		</p>
+	</#if>
 </div>
 
 <div class="row marketing">
