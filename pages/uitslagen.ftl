@@ -1,7 +1,7 @@
 <#if request.params[0]??>
-	<#assign thisUitslag = api.query("weekuitslag").with("datum", request.params[0]).findFirst()!>
+	<#assign thisUitslag = api.query("weekuitslag").with("datum", request.params[0]).findOne()!>
 <#else>
-	<#assign thisUitslag = api.query("weekuitslag").withDateInPast("datum", true).orderByDesc("datum").findFirst()!>
+	<#assign thisUitslag = api.query("weekuitslag").withDateInPast("datum").orderByDesc("datum").findOne()!>
 </#if>
 
 <#if thisUitslag?has_content>
@@ -19,11 +19,11 @@
 
 <h4>Archief</h4>
 
-<#list api.query("weekuitslag").withDateInPast("datum", true).orderByDesc("datum").findAll(10)>
+<#list api.query("weekuitslag").withDateInPast("datum").orderByDesc("datum").findAll(10)>
 	<div class="list-group">
 		<#items as uitslag>
 			<a href="/uitslagen/${uitslag.getDate("datum").format("yyyy-MM-dd")}" class="list-group-item list-group-item-action">
-				${uitslag.getDate("datum").format("EEEE d MMMM, yyyy", "nl_BE")?cap_first}
+				${uitslag.getDate("datum").format("EEEE d MMMM, yyyy").withLocale("nl_BE")?cap_first}
 			</a>
 		</#items>
 	</div>
@@ -65,5 +65,5 @@
 </#macro>
 
 <#function score team>
-	<#return team.getNumber("percentage").format("0.00", "nl_BE")>
+	<#return team.getNumber("percentage").format("0.00").withLocale("nl_BE")>
 </#function>

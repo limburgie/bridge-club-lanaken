@@ -86,6 +86,14 @@
 			}
 		},
 		{
+			"friendlyUrl": "privacy",
+			"name": "Privacy",
+			"template": "subpage",
+			"inserts": {
+				"content": "pages/privacy.ftl"
+			}
+		},
+		{
 			"friendlyUrl": "contact",
 			"name": "Contact",
 			"template": "subpage",

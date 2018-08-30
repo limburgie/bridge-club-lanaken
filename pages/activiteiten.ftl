@@ -1,11 +1,11 @@
 <h4>Aankomende activiteiten</h4>
 
-<#assign activiteiten = api.query("activiteit").withDateInFuture("datum", true).orderByAsc("datum").findAll()>
+<#assign activiteiten = api.query("activiteit").withDateInFuture("datum").orderByAsc("datum").findAll()>
 <@listActiviteiten activiteiten=activiteiten class="col-md-6"/>
 
 <h4>Afgelopen activiteiten</h4>
 
-<#assign activiteiten = api.query("activiteit").withDateInPast("datum", true).orderByDesc("datum").findAll()>
+<#assign activiteiten = api.query("activiteit").withDateInPast("datum").orderByDesc("datum").findAll()>
 <@listActiviteiten activiteiten=activiteiten class="col-md-6 col-lg-4"/>
 
 
@@ -15,11 +15,11 @@
 		<#items as activiteit>
 			<div class="${class} mb-5">
 				<div class="card">
-					<#if activiteit.getImage("banner").url??>
+					<#if activiteit.getImage("banner")??>
 						<img class="card-img-top" src="${activiteit.getImage("banner").url}" alt="${activiteit.getText("titel")}">
 					</#if>
 					<div class="card-footer">
-						<small class="text-muted">${activiteit.getDate("datum").format("EEEE d MMMM 'om' HH'u'mm")?cap_first}</small>
+						<small class="text-muted">${activiteit.getDate("datum").format("EEEE d MMMM 'om' HH'u'mm").withLocale("nl_BE")?cap_first}</small>
 					</div>
 					<div class="card-body">
 						<h4 class="card-title mt-0">${activiteit.getText("titel")}</h4>

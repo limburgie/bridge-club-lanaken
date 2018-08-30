@@ -1,1 +1,1 @@
-${api.query("wedstrijdreglement").findFirst().getRichText("informatie").html}
+${api.query("wedstrijdreglement").findOne().getRichText("informatie").html}

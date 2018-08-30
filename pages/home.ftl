@@ -1,4 +1,4 @@
-<#assign banner = api.query("banner").findFirst()>
+<#assign banner = api.query("banner").findOne()>
 
 <div class="jumbotron">
 	<div class="jumbotron-bg" style="background-image: url('${banner.getImage("achtergrond").url}')"></div>
@@ -19,7 +19,7 @@
 
 <div class="row marketing">
 	<div class="col-lg-6">
-	<#assign voorbijeWedstrijd = api.query("weekuitslag").withDateInPast("datum", true).orderByDesc("datum").findFirst()!>
+	<#assign voorbijeWedstrijd = api.query("weekuitslag").withDateInPast("datum").orderByDesc("datum").findOne()!>
 	<#if voorbijeWedstrijd?has_content>
 		<h4>Clubavond ${voorbijeWedstrijd.getDate("datum").format("dd/MM/yyyy")}</h4>
 
@@ -37,7 +37,7 @@
 								<td class="d-table-cell d-sm-none">
 								<#if team.getText("speler1")??><div><nobr>${team.getText("speler1")}</nobr></div></#if>
 								<#if team.getText("speler2")??><div><nobr>${team.getText("speler2")}</nobr></div></#if>
-								<td>${team.getNumber("percentage").format("0.00", "nl_BE")}%</td>
+								<td>${team.getNumber("percentage").format("0.00").withLocale("nl_BE")}%</td>
 							</tr>
 						</#items>
 					</tbody>
@@ -59,14 +59,14 @@
 
 <div class="col-lg-5 offset-lg-1">
 	<h4>Komende clubavonden</h4>
-	<#assign wedstrijden = api.query("weekuitslag").withDateInFuture("datum", true).orderByAsc("datum").findAll()>
+	<#assign wedstrijden = api.query("weekuitslag").withDateInFuture("datum").orderByAsc("datum").findAll()>
 	<#list wedstrijden[0..*3]>
 		<ul class="list-group">
 			<#items as wedstrijd>
 				<li class="list-group-item d-flex justify-content-between align-items-center">
-					${wedstrijd.getDate("datum").format("EEE d MMMM, yyyy", "nl_BE")?cap_first}
-					<#if !wedstrijd.getWebLink("doodle_link").empty>
-						<a href="${wedstrijd.getWebLink("doodle_link").url}" class="badge badge-primary">Doodle</a>
+					${wedstrijd.getDate("datum").format("EEE d MMMM, yyyy").withLocale("nl_BE")?cap_first}
+					<#if wedstrijd.getWebLink("doodle_link")??>
+						<a href="${wedstrijd.getWebLink("doodle_link")}" class="badge badge-primary">Doodle</a>
 					</#if>
 				</li>
 			</#items>
@@ -76,7 +76,7 @@
 	</#list>
 
 	<h4>Komende activiteiten</h4>
-	<#assign activiteiten = api.query("activiteit").withDateInFuture("datum", true).orderByAsc("datum").findAll()>
+	<#assign activiteiten = api.query("activiteit").withDateInFuture("datum").orderByAsc("datum").findAll()>
 		<#list activiteiten[0..*3]>
 			<div class="list-group mb-3">
 				<#items as activiteit>

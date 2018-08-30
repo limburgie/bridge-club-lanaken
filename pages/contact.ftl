@@ -1,13 +1,13 @@
 <div class="row marketing">
 	<div class="col-lg-5">
-		<#assign contact = api.query("contactinformatie").findFirst()>
+		<#assign contact = api.query("contactinformatie").findOne()>
 
 		<h4>${contact.getText("titel")}</h4>
 		${contact.getRichText("informatie").html}
 	</div>
 
 	<div class="col-lg-6 offset-lg-1">
-		<#assign bestuur = api.query("bestuur").findFirst()>
+		<#assign bestuur = api.query("bestuur").findOne()>
 
 		<h4>Het bestuur</h4>
 		<#list bestuur.getGroup("bestuursleden")>
