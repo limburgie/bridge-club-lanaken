@@ -82,7 +82,7 @@
 				<#items as activiteit>
 					<a href="/activiteiten" class="list-group-item list-group-item-action flex-column align-items-start">
 						<h5 class="mt-0 mb-2">${activiteit.getText("titel")}</h5>
-						<small class="text-muted">${activiteit.getDate("datum").format("dd/MM/yyy 'om' HH'u'mm")}</small>
+						<small class="text-muted">${activiteit.getDate("datum").format("dd/MM/yyy 'om' HH'u'mm").withTimeZone("Europe/Brussels")}</small>
 						<div class="mb-1">${activiteit.getRichText("beschrijving").abbreviate(100)}</div>
 					</a>
 				</#items>

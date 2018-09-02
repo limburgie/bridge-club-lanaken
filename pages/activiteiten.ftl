@@ -19,7 +19,7 @@
 						<img class="card-img-top" src="${activiteit.getImage("banner").url}" alt="${activiteit.getText("titel")}">
 					</#if>
 					<div class="card-footer">
-						<small class="text-muted">${activiteit.getDate("datum").format("EEEE d MMMM 'om' HH'u'mm").withLocale("nl_BE")?cap_first}</small>
+						<small class="text-muted">${activiteit.getDate("datum").format("EEEE d MMMM 'om' HH'u'mm").withTimeZone("Europe/Brussels").withLocale("nl_BE")?cap_first}</small>
 					</div>
 					<div class="card-body">
 						<h4 class="card-title mt-0">${activiteit.getText("titel")}</h4>
