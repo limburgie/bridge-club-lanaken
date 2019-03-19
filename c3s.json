@@ -8,6 +8,11 @@
 		"repositoryId": "https://bridgeclublanaken.cdn.prismic.io/api"
 	},
 
+	"locationSettings": {
+		"locale": "nl_BE",
+		"timeZone": "Europe/Brussels"
+	},
+
 	"templates": [
 		{
 			"name": "template",
