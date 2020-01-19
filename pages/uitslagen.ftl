@@ -7,19 +7,28 @@
 <#if thisUitslag?has_content>
 	<h4>Clubavond ${thisUitslag.getDate("datum").format("dd/MM/yyyy")}</h4>
 
-	<div class="row">
-		<div class="col-lg-6">
-			<@uitslag "Lijn A" "alijn"/>
+	<#assign pdf = thisUitslag.getAsset("pdf")!/>
+
+	<#if pdf?has_content>
+		<iframe class="pdf" src="https://docs.google.com/viewer?url=${pdf.url}&embedded=true"></iframe>
+		<p class="btn-bar">
+			<a href="${pdf.url}" class="btn btn-primary" target="_blank">Uitslag downloaden</a>
+		</p>
+	<#else>
+		<div class="row">
+			<div class="col-lg-6">
+                <@uitslag "Lijn A" "alijn"/>
+			</div>
+			<div class="col-lg-6">
+                <@uitslag "Lijn B" "blijn"/>
+			</div>
 		</div>
-		<div class="col-lg-6">
-			<@uitslag "Lijn B" "blijn"/>
-		</div>
-	</div>
+	</#if>
 </#if>
 
 <h4>Archief</h4>
 
-<#list api.query("weekuitslag").withDateInPast("datum").orderByDesc("datum").findAll(10)>
+<#list api.query("weekuitslag").withDateInPast("datum").orderByDesc("datum").findAll()>
 	<div class="list-group">
 		<#items as uitslag>
 			<a href="/uitslagen/${uitslag.getDate("datum").format("yyyy-MM-dd")}" class="list-group-item list-group-item-action">

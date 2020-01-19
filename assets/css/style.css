@@ -116,6 +116,17 @@ pre {
 	color: #777;
 }
 
+iframe.pdf {
+	width: 100%;
+	height: 300px;
+	border: 0;
+}
+
+.btn-bar .btn {
+	margin-top: 10px;
+	margin-right: 10px;
+}
+
 /* Landscape phones, 576px and up */
 @media (min-width: 576px) {
 	body {
@@ -126,12 +137,33 @@ pre {
 	h1 {
 		font-size: 3rem;
 	}
+
+	iframe.pdf {
+		height: 350px;
+	}
 }
 
 /* Tablets, 768px and up */
 @media (min-width: 768px) {
+	iframe.pdf {
+		height: 400px;
+	}
 }
 
 /* Desktops, 992px and up */
 @media (min-width: 992px) {
+	iframe.pdf {
+		height: 300px;
+	}
+
+	main > iframe.pdf {
+		height: 600px;
+	}
+}
+
+/* Large desktops, 1200px and up */
+@media (min-width: 1200px) {
+	iframe.pdf {
+		height: 350px;
+	}
 }
